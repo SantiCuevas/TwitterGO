@@ -30,10 +30,10 @@ func ProcesoToken(t string) (*models.Claim, bool, string, error) {
 		return clave, nil
 	})
 	if err == nil {
-		_, encontrado, ID := bd.ChequeoYaExisteUsuario(claims.Email)
+		_, encontrado, _ := bd.ChequeoYaExisteUsuario(claims.Email)
 		if encontrado == true {
 			Email = claims.Email
-			IdUser = ID
+			IdUser = claims.ID.Hex()
 		}
 		return claims, encontrado, IdUser, nil
 	}
